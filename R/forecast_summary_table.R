@@ -3,7 +3,6 @@
 ####################################################
 
 
-
 #' Forecast summary table
 #'
 #' Forecast summary table
