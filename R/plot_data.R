@@ -14,6 +14,7 @@
 #' @param model sibling, ln.sibling, lnY.sibling, lnS.lnR, ricker
 #' @keywords forecast
 #' @export
+#' @export plot.data
 #' @examples
 #' plot.data()
 #' @author Greg Buck
