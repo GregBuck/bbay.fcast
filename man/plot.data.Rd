@@ -23,7 +23,7 @@
 linnear regression plots and residual plot for sibling, ln.sibling, lnY.sibling, lnS.lnR and ricker models
 }
 \examples{
-f.cast.tbl()
+plot.data()
 }
 \author{
 Greg Buck
