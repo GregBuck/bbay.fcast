@@ -15,7 +15,7 @@
 #' @keywords forecast
 #' @export
 #' @examples
-#' f.cast.tbl()
+#' plot.data()
 #' @author Greg Buck
 
 
