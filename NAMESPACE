@@ -2,6 +2,7 @@
 
 S3method(plot,data)
 export(f.cast.tbl)
+export(f.cast.tbl.summary)
 export(ln.sib.forecast)
 export(ln.sib.pvalue)
 export(ln.sib.rsquare)
