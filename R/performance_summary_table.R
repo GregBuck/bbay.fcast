@@ -206,7 +206,18 @@ f.cast.tbl.summary <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr){
 
   temp <- master.summary %>%
     arrange_at("range")
-  temp
+
+
+  temp2 <- temp %>%
+    mutate(MAD = as.numeric(MAD)) %>%
+    mutate(MAPE = as.numeric(MAPE)) %>%
+    mutate(MPE = as.numeric(MPE)) %>%
+    mutate(MAAPE = as.numeric(MAAPE))
+
+
+  temp2 %>%
+    kbl(digits = c(0,0,0,3,3,3), format.args = list(big.mark = ",")) %>%
+    kable_styling()
 
 
 } # end f.cast.tbl function
