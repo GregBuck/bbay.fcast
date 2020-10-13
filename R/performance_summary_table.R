@@ -215,10 +215,18 @@ f.cast.tbl.summary <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr){
     mutate(MAAPE = as.numeric(MAAPE))
 
 
-  temp2 %>%
-    kbl(digits = c(0,0,0,3,3,3), format.args = list(big.mark = ",")) %>%
-    kable_styling()
+  temp3 <- formattable(temp2,
+                       align = c("l",rep("r", NCOL(temp2) - 1)),
+                       list("model" = formatter("span", style = ~ style(color = "grey", font.weight = "bold")),
+                            "MAD" = color_bar("#FA614B"),
+                            "MAPE" = color_bar("#6b4596b2"),
+                            "MPE" = color_bar("#95D840FF"),
+                            "MAAPE" = color_bar("#DCE319FF")))
 
+  temp3 %>%
+    mutate(MAPE = formattable:::percent(MAPE)) %>%
+    mutate(MPE = formattable:::percent(MPE)) %>%
+    mutate(MAAPE = round(MAAPE, digits = 2))
 
 } # end f.cast.tbl function
 
