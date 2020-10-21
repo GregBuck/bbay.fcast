@@ -8,6 +8,7 @@
 #' forecast next years return of a given age class using a linnear transformation of the Ricker relationship
 #' @param sibling A tible with one column
 #' @param forecast.age A tible with one column
+#' @param input The numeric value of previous year spawner return
 #' @keywords ricker
 #' @export
 #' @examples

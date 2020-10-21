@@ -8,6 +8,7 @@
 #' forecast next years log return of a given age class using a linnear regression of the log spawner returns
 #' @param sibling A tible with one column
 #' @param forecast.age A tible with one column
+#' @param input The numeric value of previous year log(spawner) return
 #' @keywords log spawner log recruit
 #' @export
 #' @examples

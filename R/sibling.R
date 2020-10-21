@@ -8,6 +8,7 @@
 #' forecast next years return of a given age class using a linnear regression of sibling returns
 #' @param sibling A tible with one column
 #' @param forecast.age A tible with one column
+#' @param input The numeric value of previous year sibling return
 #' @keywords sibling
 #' @export
 #' @examples

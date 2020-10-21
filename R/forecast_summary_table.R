@@ -145,6 +145,22 @@ f.cast.tbl <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr,model){
     master <- cbind(dat,df)
   } # end if
 
+
+  # loop through models collecting stats--average
+  if(model == "average"){
+    dat <-  mutate(dat, temp = frollmean(f.cast.age, n = 5))
+    a <- as.vector(dat$temp)
+    b <- length(a)
+    a <- prepend(a,0,before = 1)
+    a <- a[1:b]
+    dat <- cbind(dat,a)
+    dat <- dat[,c("brood.year","return.year","spawners","sibling","f.cast.age","a")]
+    names(dat) <- c("brood.year","return.year","spawners","sibling","f.cast.age","forecast")
+    dat$r.sq <- ""
+    dat$p.value <- ""
+    master <- dat
+  } # end if
+
   # truncates table to most recent years
   temp <- master %>%
     filter(return.year > f.cast.yr - 10) %>%
