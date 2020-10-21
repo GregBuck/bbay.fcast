@@ -177,7 +177,9 @@ if(model == "ricker" | model == "lnS.lnR"){
 
   names(temp) <- c("Return Yr","Brood Yr","Observed Return","Spawner Return",
                    "R Sq","P-val","Forecasted Return","AD","APE","PE","AAPE")
-}else{
+} # end if
+
+if(model == "sibling" | model == "ln.sibling" | model == "lnY.sibling"){
   temp <- temp[,c("return.year","brood.year","f.cast.age","sibling","r.sq",
                   "p.value","forecast","AD","APE","PE","AAPE")]
 
@@ -185,6 +187,23 @@ if(model == "ricker" | model == "lnS.lnR"){
                    "R Sq","P-val","Forecasted Return","AD","APE","PE","AAPE")
 }
 
+  if(model == "average"){
+    temp <- temp[,c("return.year","brood.year","f.cast.age",
+                    "forecast","AD","APE","PE","AAPE")]
+
+    names(temp) <- c("Return Yr","Brood Yr","Observed Return",
+                     "Forecasted Return","AD","APE","PE","AAPE")
+  }
+
+  if(model == "average"){
+  temp %>%
+    kable(digits = c(0,3,3,0,0,2,2,2), format.args = list(big.mark = ",")) %>%
+    kable_styling() %>%
+    column_spec(1:2,color = "blue") %>%
+    column_spec(3,bold = T) %>%
+    column_spec(4,bold = T, background = "yellow") %>%
+    column_spec(5:8,color = "green")
+  }else{
   temp %>%
     kable(digits = c(0,0,0,0,3,3,0,0,2,2,2), format.args = list(big.mark = ",")) %>%
     kable_styling() %>%
@@ -193,5 +212,6 @@ if(model == "ricker" | model == "lnS.lnR"){
     column_spec(5:6, color = "red") %>%
     column_spec(7,bold = T, background = "yellow") %>%
     column_spec(8:11,color = "green")
+} # end if
 
 } # end f.cast.tbl function
