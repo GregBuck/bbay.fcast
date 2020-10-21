@@ -52,11 +52,12 @@ f.cast.tbl.summary <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr){
                    stringsAsFactors=F)
 
   # model list
-  model.list <- c("sibling","ln.sibling","lnY.sibling","lnS.lnR","ricker")
+  model.list <- c("sibling","ln.sibling","lnY.sibling","lnS.lnR","ricker","average")
+  #model.list <- c("sibling","ln.sibling","lnY.sibling","lnS.lnR","ricker")
 
 
   # loop through model list
-  for(x in 1:5){
+  for(x in 1:6){
 
 
     # loop through models collecting stats--SIBLING
@@ -167,7 +168,22 @@ f.cast.tbl.summary <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr){
       master <- cbind(dat,df)
     } # end if
 
-    # truncates table to most recent years
+    # loop through models collecting stats--average
+    if(model.list[x] == "average"){
+      dat <-  mutate(dat, temp = frollmean(f.cast.age, n = 5))
+      a <- as.vector(dat$temp)
+      b <- length(a)
+      a <- prepend(a,0,before = 1)
+      a <- a[1:b]
+      dat <- cbind(dat,a)
+      dat <- dat[,c("brood.year","return.year","spawners","sibling","f.cast.age","a")]
+      names(dat) <- c("brood.year","return.year","spawners","sibling","f.cast.age","forecast")
+      dat$r.sq <- ""
+      dat$p.value <- ""
+      master <- dat
+    } # end if
+
+  # truncates table to most recent years
     temp <- master %>%
       filter(return.year > f.cast.yr - 10) %>%
       mutate(AD = abs(forecast - f.cast.age)) %>%
