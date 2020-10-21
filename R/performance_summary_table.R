@@ -242,7 +242,9 @@ f.cast.tbl.summary <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr){
   temp3 %>%
     mutate(MAPE = formattable:::percent(MAPE)) %>%
     mutate(MPE = formattable:::percent(MPE)) %>%
-    mutate(MAAPE = round(MAAPE, digits = 2))
+    mutate(MAAPE = round(MAAPE, digits = 2)) %>%
+    mutate(MAD = round(MAD)) %>%
+    mutate(MAD = format(MAD, big.mark = ","))
 
 } # end f.cast.tbl function
 
