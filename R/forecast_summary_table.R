@@ -171,12 +171,19 @@ f.cast.tbl <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr,model){
     mutate(brood.year = as.character(brood.year)) %>%
     mutate(return.year = as.character(return.year))
 
+if(model == "ricker" | model == "lnS.lnR"){
+  temp <- temp[,c("return.year","brood.year","f.cast.age","spawners","r.sq",
+                  "p.value","forecast","AD","APE","PE","AAPE")]
 
+  names(temp) <- c("Return Yr","Brood Yr","Observed Return","Spawner Return",
+                   "R Sq","P-val","Forecasted Return","AD","APE","PE","AAPE")
+}else{
   temp <- temp[,c("return.year","brood.year","f.cast.age","sibling","r.sq",
                   "p.value","forecast","AD","APE","PE","AAPE")]
 
   names(temp) <- c("Return Yr","Brood Yr","Observed Return","Sibling Return",
                    "R Sq","P-val","Forecasted Return","AD","APE","PE","AAPE")
+}
 
   temp %>%
     kable(digits = c(0,0,0,0,3,3,0,0,2,2,2), format.args = list(big.mark = ",")) %>%
