@@ -220,11 +220,7 @@ f.cast.tbl.summary <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr){
   } # end model.list loop
 
 
-  temp <- master.summary %>%
-    arrange_at("range")
-
-
-  temp2 <- temp %>%
+  temp2 <- master.summary %>%
     mutate(MAD = as.numeric(MAD)) %>%
     mutate(MAPE = as.numeric(MAPE)) %>%
     mutate(MPE = as.numeric(MPE)) %>%
@@ -240,6 +236,7 @@ f.cast.tbl.summary <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr){
                             "MAAPE" = color_bar("#DCE319FF")))
 
   temp3 %>%
+    group_by("model") %>%
     mutate(MAPE = formattable:::percent(MAPE)) %>%
     mutate(MPE = formattable:::percent(MPE)) %>%
     mutate(MAAPE = round(MAAPE, digits = 2)) %>%
