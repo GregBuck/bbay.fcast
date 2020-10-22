@@ -222,26 +222,25 @@ f.cast.tbl.summary <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr){
 
   temp2 <- master.summary %>%
     mutate(MAD = as.numeric(MAD)) %>%
-    mutate(MAPE = as.numeric(MAPE)) %>%
-    mutate(MPE = as.numeric(MPE)) %>%
-    mutate(MAAPE = as.numeric(MAAPE))
-
-
-  temp3 <- formattable(temp2,
-                       align = c("l",rep("r", NCOL(temp2) - 1)),
-                       list("model" = formatter("span", style = ~ style(color = "grey", font.weight = "bold")),
-                            "MAD" = color_bar("#FA614B"),
-                            "MAPE" = color_bar("#6b4596b2"),
-                            "MPE" = color_bar("#95D840FF"),
-                            "MAAPE" = color_bar("#DCE319FF")))
-
-  temp3 %>%
-    group_by("model") %>%
-    mutate(MAPE = formattable:::percent(MAPE)) %>%
-    mutate(MPE = formattable:::percent(MPE)) %>%
-    mutate(MAAPE = round(MAAPE, digits = 2)) %>%
     mutate(MAD = round(MAD)) %>%
-    mutate(MAD = format(MAD, big.mark = ","))
+    mutate(MAD = format(MAD, big.mark = ",")) %>%
+    mutate(MAPE = as.numeric(MAPE)) %>%
+    mutate(MAPE = formattable:::percent(MAPE)) %>%
+    mutate(MPE = as.numeric(MPE)) %>%
+    mutate(MPE = formattable:::percent(MPE)) %>%
+    mutate(MAAPE = as.numeric(MAAPE)) %>%
+    mutate(MAAPE = round(MAAPE, digits = 2)) %>%
+    group_by(model)
+
+
+temp3 <- formattable(temp2,
+              align = c("l",rep("r", NCOL(temp2) - 1)),
+              list("model" = formatter("span", style = ~ style(color = "grey", font.weight = "bold")),
+                   "MAD" = color_bar("#FA614B"),
+                   "MAPE" = color_bar("#6b4596b2"),
+                   "MPE" = color_bar("#95D840FF"),
+                   "MAAPE" = color_bar("#DCE319FF")))
+temp3
 
 } # end f.cast.tbl function
 
