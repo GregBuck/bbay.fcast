@@ -165,7 +165,7 @@ f.cast.tbl <- function(f.cast.age,sibling,f.cast.yr,riv.name,start.yr,model){
   temp <- master %>%
     filter(return.year > f.cast.yr - 10) %>%
     mutate(AD = abs(forecast - f.cast.age)) %>%
-    mutate(PE = abs(forecast - f.cast.age)/f.cast.age) %>%
+    mutate(PE = (forecast - f.cast.age)/f.cast.age) %>%
     mutate(APE = abs(PE)) %>%
     mutate(AAPE = atan(abs((f.cast.age - forecast)/f.cast.age))) %>%
     mutate(brood.year = as.character(brood.year)) %>%
