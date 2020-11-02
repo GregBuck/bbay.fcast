@@ -197,7 +197,7 @@ if(model == "sibling" | model == "ln.sibling" | model == "lnY.sibling"){
 
   if(model == "average"){
   temp %>%
-    kable(digits = c(0,3,3,0,0,2,2,2), format.args = list(big.mark = ",")) %>%
+    kable(digits = c(0,3,3,0,0,2,2,2), format.args = list(big.mark = ",", scientific = FALSE)) %>%
     kable_styling() %>%
     column_spec(1:2,color = "blue") %>%
     column_spec(3,bold = T) %>%
@@ -205,7 +205,7 @@ if(model == "sibling" | model == "ln.sibling" | model == "lnY.sibling"){
     column_spec(5:8,color = "green")
   }else{
   temp %>%
-    kable(digits = c(0,0,0,0,3,3,0,0,2,2,2), format.args = list(big.mark = ",")) %>%
+    kable(digits = c(0,0,0,0,3,3,0,0,2,2,2), format.args = list(big.mark = ",", scientific = FALSE)) %>%
     kable_styling() %>%
     column_spec(1:2,color = "blue") %>%
     column_spec(3:4,bold = T) %>%
